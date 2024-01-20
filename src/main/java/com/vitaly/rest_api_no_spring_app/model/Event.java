@@ -41,10 +41,7 @@ public class Event {
     }
     @Override
     public String toString() {
-        return "Event{" +
-                "id=" + id +
-                ", user=" + user +
-                ", file=" + file +
-                '}';
+        return "{" + "\"id\":" + id + "\"" + "}";
     }
+
 }

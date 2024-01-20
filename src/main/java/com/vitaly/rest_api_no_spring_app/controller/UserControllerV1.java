@@ -3,7 +3,8 @@ package com.vitaly.rest_api_no_spring_app.controller;
 // gh crazym8nd
 
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 
 @WebServlet("/v1/users")
-public class UserControllerV1 {
+public class UserControllerV1 extends HttpServlet {
 }

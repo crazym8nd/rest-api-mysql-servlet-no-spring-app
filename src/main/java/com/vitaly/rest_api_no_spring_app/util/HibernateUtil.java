@@ -12,7 +12,7 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 public class HibernateUtil {
-    private HibernateUtil() {};
+    private HibernateUtil() {}
 
     private static SessionFactory sessionFactory;
     public static SessionFactory getSessionFactory(){

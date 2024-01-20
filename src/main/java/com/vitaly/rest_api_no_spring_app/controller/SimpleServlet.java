@@ -18,11 +18,11 @@ import java.io.PrintWriter;
 public class SimpleServlet extends HttpServlet {
 
     private String message;
-
+    @Override
     public void init() throws ServletException {
         message = "This is simple servlet message";
     }
-
+    @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
 
@@ -30,6 +30,7 @@ public class SimpleServlet extends HttpServlet {
         messageWriter.println("<h1>" + message + "<h1>");
     }
 
+    @Override
     public void destroy() {
 
     }

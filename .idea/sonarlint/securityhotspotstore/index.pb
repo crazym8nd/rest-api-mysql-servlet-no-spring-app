@@ -27,12 +27,6 @@ Nsrc/main/java/com/vitaly/rest_api_no_spring_app/repository/UserRepository.java
 Nsrc/main/java/com/vitaly/rest_api_no_spring_app/repository/FileRepository.java,0\b\0bb7196aeeed4d3ec764b40add25304cdf239890
 
 Osrc/main/java/com/vitaly/rest_api_no_spring_app/repository/EventRepository.java,a\b\ab0818a41a45f5904686ed082328658dcc40af8f
-‰
-Ysrc/main/java/com/vitaly/rest_api_no_spring_app/repository/impls/EventRepositoryImpl.java,e\a\ead5dffbebab9cdac4129b2ca1a0a283a6f436bb
-„
-Tsrc/main/java/com/vitaly/rest_api_no_spring_app/repository/impls/FileRepository.java,0\9\09fb35f7c96466db58eeeb8795ad19487bffba07
-ˆ
-Xsrc/main/java/com/vitaly/rest_api_no_spring_app/repository/impls/UserRepositoryImpl.java,7\5\75c6de209aa5a84d45d492870d03669b446435f2
 {
 Ksrc/main/java/com/vitaly/rest_api_no_spring_app/service/GenericService.java,1\e\1e1804fbc0ecb0da3249b51e9e389426e09b0195
 x
@@ -70,3 +64,11 @@ S
 :
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
+9
+	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+e
+5src/main/resources/db/migration/V1__generate_data.sql,9\9\998743f77731c27122e6dec884f06eef542a64af
+a
+1src/main/resources/db/migration/V0__create_db.sql,a\5\a5c2661709077026ef3ac6b659f81e7a0709ac95
+W
+'src/main/resources/hibernate.properties,a\c\ac770fe9478d530a77fce01d5082e3ea043e98d7
