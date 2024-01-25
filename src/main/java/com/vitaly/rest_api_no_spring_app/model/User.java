@@ -27,25 +27,21 @@ public class User {
     @Column(name = "user_name")
     private String name;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private List<Event> events;
 
     @Column(name = "user_status")
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    public User(Integer id, String name){
+    public User(Integer id, String name, List<Event> events){
         this.id = id;
         this.name = name;
+        this.events = events;
         this.status = Status.ACTIVE;
     }
     public User(String name){
         this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return "{" + "\"id\":" + id + ", \"name\":" + "\"" + name + "\"" + "}";
     }
 
 }

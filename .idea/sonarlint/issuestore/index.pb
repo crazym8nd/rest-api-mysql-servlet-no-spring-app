@@ -3,8 +3,6 @@
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 =
 src/main/java,1\2\126f59157cfeffae640ab383208650e13aa61ba1
-}
-Msrc/main/java/com/vitaly/rest_api_no_spring_app/controller/SimpleServlet.java,a\4\a4fc6217d9ff3cb619affed7b1b0c3c071bae068
 O
 src/main/webapp/WEB-INF/web.xml,2\e\2e22b6edd746fa3dc40ad7276c87c8d87d72a392
 I
@@ -72,3 +70,15 @@ a
 1src/main/resources/db/migration/V0__create_db.sql,a\5\a5c2661709077026ef3ac6b659f81e7a0709ac95
 W
 'src/main/resources/hibernate.properties,a\c\ac770fe9478d530a77fce01d5082e3ea043e98d7
+q
+Asrc/main/java/com/vitaly/rest_api_no_spring_app/dto/EventDto.java,0\5\0553f803560b0130eca95e36da1a7170c07141d9
+p
+@src/main/java/com/vitaly/rest_api_no_spring_app/dto/FileDto.java,d\3\d3f87b10aa212b16464f3fb938c6a9e492ebff2c
+p
+@src/main/java/com/vitaly/rest_api_no_spring_app/dto/UserDto.java,1\4\1409a50279007dee1ee3437d8440f10edea97b72
+}
+Msrc/main/java/com/vitaly/rest_api_no_spring_app/util/mappers/EventMapper.java,2\7\272e640ccb11fdada39a289be2fc5515f43b0775
+|
+Lsrc/main/java/com/vitaly/rest_api_no_spring_app/util/mappers/FileMapper.java,0\4\04d2d9a679e3f9d04487b92eba297edd253641ee
+|
+Lsrc/main/java/com/vitaly/rest_api_no_spring_app/util/mappers/UserMapper.java,e\a\ea0f39e1fa29aa3477f223bd75ff96804b17421e

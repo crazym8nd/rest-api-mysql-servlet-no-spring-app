@@ -3,8 +3,9 @@ package com.vitaly.rest_api_no_spring_app.service;
 // gh crazym8nd
 
 
-import com.vitaly.rest_api_no_spring_app.model.Event;
+import com.vitaly.rest_api_no_spring_app.dto.EventDto;
 
-public interface EventService extends GenericService <Event, Integer>{
+
+public interface EventService extends GenericService <EventDto, Integer>{
 }
 

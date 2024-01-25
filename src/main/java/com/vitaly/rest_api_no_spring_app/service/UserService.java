@@ -3,7 +3,7 @@ package com.vitaly.rest_api_no_spring_app.service;
 // gh crazym8nd
 
 
-import com.vitaly.rest_api_no_spring_app.model.User;
+import com.vitaly.rest_api_no_spring_app.dto.UserDto;
 
-public interface UserService extends GenericService<User, Integer> {
+public interface UserService extends GenericService<UserDto, Integer> {
 }

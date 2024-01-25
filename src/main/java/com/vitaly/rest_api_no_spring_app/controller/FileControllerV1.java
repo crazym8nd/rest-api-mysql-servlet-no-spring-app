@@ -5,6 +5,6 @@ package com.vitaly.rest_api_no_spring_app.controller;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 
-@WebServlet("/v1/files")
+@WebServlet("/api/v1/files")
 public class FileControllerV1 extends HttpServlet {
 }

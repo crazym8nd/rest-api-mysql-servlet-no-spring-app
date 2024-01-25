@@ -3,11 +3,14 @@ package com.vitaly.rest_api_no_spring_app.service.impl;
 // gh crazym8nd
 
 
+import com.vitaly.rest_api_no_spring_app.dto.UserDto;
 import com.vitaly.rest_api_no_spring_app.model.User;
 import com.vitaly.rest_api_no_spring_app.repository.UserRepository;
 import com.vitaly.rest_api_no_spring_app.repository.impl.UserRepositoryImpl;
 import com.vitaly.rest_api_no_spring_app.service.UserService;
+import com.vitaly.rest_api_no_spring_app.util.mappers.UserMapper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
@@ -20,28 +23,41 @@ public class UserServiceImpl implements UserService {
     public UserServiceImpl(){
         this.userRepository = new UserRepositoryImpl();
     }
+
     @Override
-    public List<User> getAll() {
-        return userRepository.getAll();
+    public List<UserDto> getAll() {
+        List<User> users = userRepository.getAll();
+        List<UserDto> userDtoList = new ArrayList<>();
+        for(User user:users){
+            UserDto userDto = UserMapper.convertEntityToDto(user);
+            userDtoList.add(userDto);
+        }
+        return userDtoList;
     }
 
     @Override
-    public User getById(Integer id) {
-        return userRepository.getById(id);
+    public UserDto getById(Integer integer) {
+        User user = userRepository.getById(integer);
+        return UserMapper.convertEntityToDto(user);
     }
 
     @Override
-    public User create(User user) {
-        return userRepository.create(user);
+    public UserDto create(UserDto userDto) {
+        User user = UserMapper.convertDtoToEntity(userDto);
+        userRepository.create(user);
+        return userDto;
     }
 
     @Override
-    public User update(User user) {
-        return userRepository.update(user);
+    public UserDto update(UserDto userDto) {
+        User user = UserMapper.convertDtoToEntity(userDto);
+        userRepository.update(user);
+        return userDto;
     }
 
     @Override
-    public void deleteById(Integer id) {
-        userRepository.deleteById(id);
+    public void deleteById(Integer integer) {
+        userRepository.deleteById(integer);
+
     }
 }

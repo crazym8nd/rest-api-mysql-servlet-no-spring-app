@@ -73,7 +73,7 @@ public class UserRepositoryImpl implements UserRepository {
                 System.out.println("Error while creating user ");
             }
         }
-        return new User(-1,"NO SUCH USER");
+        return new User(-1,"NO SUCH USER", null);
     }
 
     @Override

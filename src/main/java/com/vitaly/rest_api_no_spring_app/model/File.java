@@ -36,9 +36,6 @@ public class File {
         this.filePath = filePath;
         this.status = Status.ACTIVE;
     }
-    @Override
-    public String toString() {
-        return "{" + "\"id\":" + id + ", \"name\":" + "\"" + name + "\"" + ", \"filePath\":" + "\"" + filePath + "\""+ "}";
-    }
+
 }
 

@@ -14,8 +14,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class EventRepositoryImpl implements EventRepository{
-@Override
-public List<Event> getAll() {
+
+    @Override
+    public List<Event> getAll() {
     try (Session session = HibernateUtil.getSessionFactory().openSession()) {
         return session.createQuery("FROM Event e LEFT JOIN FETCH e.file LEFT JOIN FETCH e.user WHERE e.status = :status", Event.class)
                 .setParameter("status", Status.ACTIVE)

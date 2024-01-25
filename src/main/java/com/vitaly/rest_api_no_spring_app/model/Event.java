@@ -39,9 +39,4 @@ public class Event {
         this.file = file;
         this.status = Status.ACTIVE;
     }
-    @Override
-    public String toString() {
-        return "{" + "\"id\":" + id + "\"" + "}";
-    }
-
 }
