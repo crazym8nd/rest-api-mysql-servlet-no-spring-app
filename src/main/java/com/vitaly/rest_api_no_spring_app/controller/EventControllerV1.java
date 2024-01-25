@@ -2,6 +2,7 @@ package com.vitaly.rest_api_no_spring_app.controller;
 //  20-Jan-24
 // gh crazym8nd
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.vitaly.rest_api_no_spring_app.dto.EventDto;
@@ -20,7 +21,7 @@ import java.util.List;
 @WebServlet("/api/v1/events")
 public class EventControllerV1 extends HttpServlet {
         final EventService eventService = new EventServiceImpl();
-        final Gson gs = new GsonBuilder().serializeNulls().create();
+    final ObjectMapper mapper = new ObjectMapper();
 
 
 
@@ -30,7 +31,7 @@ public class EventControllerV1 extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         List<EventDto> eventList = eventService.getAll();
         resp.setContentType("application/json");
-        resp.getWriter().write(gs.toJson(eventList));
+        resp.getWriter().write(mapper.writeValueAsString(eventList));
         }
 
     }

@@ -17,10 +17,11 @@ public class EventRepositoryImpl implements EventRepository{
 
     @Override
     public List<Event> getAll() {
+        List<Event> eventsToShow;
     try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-        return session.createQuery("FROM Event e LEFT JOIN FETCH e.file LEFT JOIN FETCH e.user WHERE e.status = :status", Event.class)
-                .setParameter("status", Status.ACTIVE)
+        eventsToShow = session.createQuery("FROM Event e LEFT JOIN FETCH e.file LEFT JOIN FETCH e.user WHERE e.status = 'ACTIVE'", Event.class)
                 .list();
+        return eventsToShow;
     } catch (HibernateException e) {
         return Collections.emptyList();
     }
@@ -30,10 +31,9 @@ public class EventRepositoryImpl implements EventRepository{
 public Event getById(Integer integer) {
     Event event;
     try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-        session.beginTransaction();
         event = (Event) session.createQuery("FROM Event e LEFT JOIN FETCH e.file LEFT JOIN FETCH e.user WHERE e.id = :eid")
                 .setParameter("eid", integer)
-                .list().get(0);
+                .uniqueResult();
     }
     if(event!= null) {
         return  event;
@@ -50,7 +50,6 @@ public Event create(Event event) {
             session.persist(event);
             session.getTransaction().commit();
         } catch (HibernateException e) {
-            e.printStackTrace();
             System.out.println("Error while creating event ");
         }
     }
@@ -81,7 +80,6 @@ public void deleteById(Integer integer) {
             session.merge(event);
             session.getTransaction().commit();
         } catch (HibernateException e) {
-            e.printStackTrace();
             System.out.println("Error while deleting event ");
         }
     }

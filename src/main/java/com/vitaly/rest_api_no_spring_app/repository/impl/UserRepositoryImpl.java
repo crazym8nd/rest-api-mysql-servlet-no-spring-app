@@ -17,9 +17,9 @@ import java.util.List;
 public class UserRepositoryImpl implements UserRepository {
     @Override
     public List<User> getAll() {
-        List<User> usersToShow = new ArrayList<>();
+        List<User> usersToShow;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-//
+
             usersToShow = session.createQuery("FROM User u LEFT JOIN FETCH u.events WHERE u.status =:status", User.class)
                     .setParameter("status", Status.ACTIVE)
                     .list();
@@ -33,12 +33,10 @@ public class UserRepositoryImpl implements UserRepository {
     public User getById(Integer id) {
         User user = new User();
         try(Session session = HibernateUtil.getSessionFactory().openSession()){
-            session.beginTransaction();
             user = (User) session.createQuery("FROM User u LEFT JOIN FETCH u.events WHERE u.id = :id")
                     .setParameter("id", id)
-                    .list().get(0);
+                    .uniqueResult();
         } catch (HibernateException e){
-            e.printStackTrace();
             System.out.println("Error while getting user by id ");
         }
         return user;
@@ -52,7 +50,6 @@ public class UserRepositoryImpl implements UserRepository {
                 session.persist(user);
                 session.getTransaction().commit();
             } catch (HibernateException e){
-                e.printStackTrace();
                 System.out.println("Error while creating user ");
             }
         }
@@ -69,7 +66,6 @@ public class UserRepositoryImpl implements UserRepository {
                 return user;
 
             } catch (HibernateException e){
-                e.printStackTrace();
                 System.out.println("Error while creating user ");
             }
         }
@@ -86,7 +82,6 @@ public class UserRepositoryImpl implements UserRepository {
                 session.merge(user);
                 session.getTransaction().commit();
             } catch (HibernateException e){
-                e.printStackTrace();
                 System.out.println("Error while deleting user ");
             }
         }

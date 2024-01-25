@@ -27,7 +27,7 @@ public class User {
     @Column(name = "user_name")
     private String name;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user")
     private List<Event> events;
 
     @Column(name = "user_status")

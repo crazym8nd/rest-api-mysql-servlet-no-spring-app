@@ -18,7 +18,7 @@ public class FileRepositoryImpl implements FileRepository {
 
     @Override
     public List<File> getAll() {
-        List<File> filesToShow = new ArrayList<>();
+        List<File> filesToShow;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             filesToShow = session.createQuery("FROM File WHERE status = :status", File.class)
                     .setParameter("status", Status.ACTIVE)
@@ -33,12 +33,10 @@ public class FileRepositoryImpl implements FileRepository {
     public File getById(Integer integer) {
         File file = new File();
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            session.beginTransaction();
             file = (File) session.createQuery("FROM File WHERE id = :id")
                     .setParameter("id", integer)
-                    .list().get(0);
+                    .uniqueResult();
         } catch (HibernateException e) {
-            e.printStackTrace();
             System.out.println("Error while getting file by id ");
         }
         return file;
@@ -52,7 +50,6 @@ public class FileRepositoryImpl implements FileRepository {
                 session.persist(file);
                 session.getTransaction().commit();
             } catch (HibernateException e) {
-                e.printStackTrace();
                 System.out.println("Error while creating file ");
             }
         }
@@ -69,7 +66,6 @@ public class FileRepositoryImpl implements FileRepository {
                 return file;
 
             } catch (HibernateException e) {
-                e.printStackTrace();
                 System.out.println("Error while updating file ");
             }
         }
@@ -86,7 +82,6 @@ public class FileRepositoryImpl implements FileRepository {
                 session.merge(file);
                 session.getTransaction().commit();
             } catch (HibernateException e) {
-                e.printStackTrace();
                 System.out.println("Error while deleting file ");
             }
         }
