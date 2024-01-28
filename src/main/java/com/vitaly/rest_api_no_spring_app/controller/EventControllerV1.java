@@ -3,8 +3,6 @@ package com.vitaly.rest_api_no_spring_app.controller;
 // gh crazym8nd
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.vitaly.rest_api_no_spring_app.dto.EventDto;
 import com.vitaly.rest_api_no_spring_app.service.EventService;
 import com.vitaly.rest_api_no_spring_app.service.impl.EventServiceImpl;

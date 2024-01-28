@@ -13,7 +13,7 @@ import lombok.Setter;
 @Setter
 public class EventDto {
     private Integer id;
-    private User user;
-    private File file;
+    private UserDto user;
+    private FileDto file;
     private Status status;
 }

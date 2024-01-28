@@ -82,3 +82,5 @@ Msrc/main/java/com/vitaly/rest_api_no_spring_app/util/mappers/EventMapper.java,
 Lsrc/main/java/com/vitaly/rest_api_no_spring_app/util/mappers/FileMapper.java,0\4\04d2d9a679e3f9d04487b92eba297edd253641ee
 |
 Lsrc/main/java/com/vitaly/rest_api_no_spring_app/util/mappers/UserMapper.java,e\a\ea0f39e1fa29aa3477f223bd75ff96804b17421e
+z
+Jsrc/main/java/com/vitaly/rest_api_no_spring_app/util/FileTransferUtil.java,1\4\140054934756d85a7403df3435cdde9bb8507e7c

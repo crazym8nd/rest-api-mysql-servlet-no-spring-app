@@ -14,7 +14,7 @@ import java.util.List;
 public class UserDto {
     private Integer id;
     private String name;
-    private List<Event> events;
+    private List<EventDto> events;
     private Status status;
 
 }

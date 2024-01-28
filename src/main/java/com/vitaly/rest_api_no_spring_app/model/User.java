@@ -3,6 +3,7 @@ package com.vitaly.rest_api_no_spring_app.model;
 // gh crazym8nd
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,6 +29,7 @@ public class User {
     private String name;
 
     @OneToMany(mappedBy = "user")
+    @JsonManagedReference
     private List<Event> events;
 
     @Column(name = "user_status")

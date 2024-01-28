@@ -7,6 +7,8 @@ import com.vitaly.rest_api_no_spring_app.model.Event;
 import com.vitaly.rest_api_no_spring_app.model.Status;
 import com.vitaly.rest_api_no_spring_app.repository.EventRepository;
 import com.vitaly.rest_api_no_spring_app.util.HibernateUtil;
+import jakarta.transaction.Transactional;
+import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
@@ -19,7 +21,8 @@ public class EventRepositoryImpl implements EventRepository{
     public List<Event> getAll() {
         List<Event> eventsToShow;
     try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-        eventsToShow = session.createQuery("FROM Event e LEFT JOIN FETCH e.file LEFT JOIN FETCH e.user WHERE e.status = 'ACTIVE'", Event.class)
+
+        eventsToShow = session.createQuery("FROM Event e JOIN FETCH e.file LEFT JOIN FETCH e.user WHERE e.status = 'ACTIVE'", Event.class)
                 .list();
         return eventsToShow;
     } catch (HibernateException e) {
@@ -31,7 +34,7 @@ public class EventRepositoryImpl implements EventRepository{
 public Event getById(Integer integer) {
     Event event;
     try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-        event = (Event) session.createQuery("FROM Event e LEFT JOIN FETCH e.file LEFT JOIN FETCH e.user WHERE e.id = :eid")
+        event = (Event) session.createQuery("FROM Event e JOIN FETCH e.file LEFT JOIN FETCH e.user WHERE e.id = :eid")
                 .setParameter("eid", integer)
                 .uniqueResult();
     }

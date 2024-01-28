@@ -8,7 +8,11 @@ import com.vitaly.rest_api_no_spring_app.model.Event;
 import com.vitaly.rest_api_no_spring_app.repository.EventRepository;
 import com.vitaly.rest_api_no_spring_app.repository.impl.EventRepositoryImpl;
 import com.vitaly.rest_api_no_spring_app.service.EventService;
+import com.vitaly.rest_api_no_spring_app.util.HibernateUtil;
 import com.vitaly.rest_api_no_spring_app.util.mappers.EventMapper;
+import jakarta.transaction.Transactional;
+import org.hibernate.Hibernate;
+import org.hibernate.Session;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,15 +26,20 @@ public class EventServiceImpl implements EventService {
         this.eventRepository = new EventRepositoryImpl();
     }
 
+
     @Override
     public List<EventDto> getAll() {
-        List<Event> events = eventRepository.getAll();
         List<EventDto> eventDtoList = new ArrayList<>();
-        for(Event event:events){
-            EventDto eventDto = EventMapper.convertEntityToDto(event);
-            eventDtoList.add(eventDto);
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            List<Event> events = eventRepository.getAll();
+            for (Event event : events) {
+                Hibernate.initialize(event.getUser());
+                EventDto eventDto = EventMapper.convertEntityToDto(event);
+                eventDtoList.add(eventDto);
+            }
+            return eventDtoList;
         }
-        return eventDtoList;
     }
 
     @Override

@@ -26,14 +26,15 @@ public class UserControllerV1 extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        try(Session session = HibernateUtil.getSessionFactory().openSession()){
+
         List<UserDto> userList = userService.getAll();
+
+
         String json = mapper.writeValueAsString(userList);
 
         resp.setContentType("application/json");
 
         resp.getWriter().write(json);
-    } catch (Exception e) {
-        resp.getWriter().write(e.getMessage());}
+
     }
 }
