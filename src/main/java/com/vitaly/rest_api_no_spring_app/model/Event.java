@@ -26,7 +26,6 @@ public class Event {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    @JsonBackReference
     private User user;
 
     @OneToOne

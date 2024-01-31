@@ -11,6 +11,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
 
 public class HibernateUtil {
     @Getter
@@ -18,20 +19,18 @@ public class HibernateUtil {
     private HibernateUtil() {
     }
     static {
-        final StandardServiceRegistry registry =
-                new StandardServiceRegistryBuilder().build();
+        StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
         try {
             sessionFactory = new MetadataSources(registry)
                     .addAnnotatedClass(User.class)
                     .addAnnotatedClass(Event.class)
                     .addAnnotatedClass(File.class)
-                    .buildMetadata()
-                    .buildSessionFactory();
+                    .buildMetadata().buildSessionFactory();
         } catch (Exception e) {
+            System.err.println("Initial SessionFactory creation failed." + e);
+            e.printStackTrace();
             StandardServiceRegistryBuilder.destroy(registry);
-
+            throw new ExceptionInInitializerError(e);
         }
     }
 }
-
-

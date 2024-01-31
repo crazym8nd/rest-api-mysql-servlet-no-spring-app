@@ -30,8 +30,6 @@ public class EventServiceImpl implements EventService {
     @Override
     public List<EventDto> getAll() {
         List<EventDto> eventDtoList = new ArrayList<>();
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            session.beginTransaction();
             List<Event> events = eventRepository.getAll();
             for (Event event : events) {
                 Hibernate.initialize(event.getUser());
@@ -39,8 +37,8 @@ public class EventServiceImpl implements EventService {
                 eventDtoList.add(eventDto);
             }
             return eventDtoList;
-        }
     }
+
 
     @Override
     public EventDto getById(Integer integer) {
