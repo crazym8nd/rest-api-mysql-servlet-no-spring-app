@@ -6,12 +6,11 @@
   <packaging>war</packaging>
   <version>1.0</version>
   <name>rest-api-no-spring-servlet-mysql-app Maven Webapp</name>
-  <url>http://maven.apache.org</url>
+  <url>http://localhost:8080</url>
 
 
   <properties>
     <javax.servlet.api.version>2.5</javax.servlet.api.version>
-    <tomcat.plugin.version>2.2</tomcat.plugin.version>
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -88,13 +87,11 @@
       <artifactId>jackson-databind</artifactId>
       <version>${jackson.version}</version>
     </dependency>
-
   </dependencies>
 
   <build>
     <finalName>rest-api-no-spring-servlet-mysql-app</finalName>
     <plugins>
-
       <!-- flyway plugin -->
       <plugin>
         <groupId>org.flywaydb</groupId>
@@ -104,17 +101,6 @@
           <url>jdbc:mysql://localhost:3306/rest_api_mysql</url>
           <user>root</user>
           <password>666666</password>
-        </configuration>
-      </plugin>
-
-      <!-- Tomcat plugin -->
-      <plugin>
-        <groupId>org.apache.tomcat.maven</groupId>
-        <artifactId>tomcat7-maven-plugin</artifactId>
-        <version>${tomcat.plugin.version}</version>
-        <configuration>
-          <path>/</path>
-          <port>8080</port>
         </configuration>
       </plugin>
     </plugins>

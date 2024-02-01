@@ -51,9 +51,17 @@ public class FileControllerV1 extends HttpServlet {
                     FileDto file = fileService.getById(id);
 
                     if (file != null) {
-                        resp.setContentType("application/json");
-                        resp.getWriter().write(mapper.writeValueAsString(file));
+
+                        String filePathWithName = file.getFilePath();
+                        resp.setContentType("text/plain");
+                        resp.getWriter().write(filePathWithName);
                         resp.setStatus(HttpServletResponse.SC_OK);
+
+
+
+//                        resp.setContentType("application/json");
+//                        resp.getWriter().write(mapper.writeValueAsString(file));
+//                        resp.setStatus(HttpServletResponse.SC_OK);
                     } else {
                         resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
                     }

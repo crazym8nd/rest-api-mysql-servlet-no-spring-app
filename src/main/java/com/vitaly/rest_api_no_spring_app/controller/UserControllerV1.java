@@ -18,18 +18,105 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/api/v1/users")
+@WebServlet("/api/v1/users/*")
 public class UserControllerV1 extends HttpServlet {
     final UserService userService = new UserServiceImpl();
-
     final ObjectMapper mapper = new ObjectMapper();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        try {
+            String pathInfo = req.getPathInfo();
 
-        List<UserDto> userList = userService.getAll();
-        String json = mapper.writeValueAsString(userList);
-        resp.setContentType("application/json");
-        resp.getWriter().write(json);
+            if (pathInfo == null || pathInfo.equals("/")) {
+                List<UserDto> userList = userService.getAll();
+                resp.setContentType("application/json");
+                resp.getWriter().write(mapper.writeValueAsString(userList));
+                resp.setStatus(HttpServletResponse.SC_OK);
+            } else {
+                String[] pathParts = pathInfo.split("/");
+                if (pathParts.length == 2) {
+                    Integer id = Integer.parseInt(pathParts[1]);
+                    UserDto user = userService.getById(id);
+
+                    if (user != null) {
+                        resp.setContentType("application/json");
+                        resp.getWriter().write(mapper.writeValueAsString(user));
+                        resp.setStatus(HttpServletResponse.SC_OK);
+                    } else {
+                        resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
+                    }
+                } else {
+                    resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+                }
+            }
+        } catch (NumberFormatException e) {
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        } catch (Exception e) {
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        }
     }
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        try {
+            UserDto userToCreate = mapper.readValue(req.getInputStream(), UserDto.class);
+            userService.create(userToCreate);
+
+            if (userToCreate.getId() != null) {
+                resp.getWriter().write("User created with ID: " + userToCreate.getId());
+                resp.setStatus(HttpServletResponse.SC_CREATED);
+            } else {
+                resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            }
+        } catch (Exception e) {
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        String pathInfo = req.getPathInfo();
+        String[] splits = pathInfo.split("/");
+        if (splits.length == 2) {
+            String idStr = splits[1];
+            try {
+                Integer id = Integer.parseInt(idStr);
+                userService.deleteById(id);
+
+                if (id == -1) {
+                    resp.setStatus(HttpServletResponse.SC_NO_CONTENT);
+                } else {
+                    resp.sendError(HttpServletResponse.SC_NOT_FOUND);
+                }
+            } catch (NumberFormatException e) {
+                resp.getWriter().write("User successfully deleted");
+                resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
+            }
+        }
+    }
+
+    @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        String pathInfo = req.getPathInfo();
+        String[] splits = pathInfo.split("/");
+        if (splits.length == 2) {
+            String idStr = splits[1];
+            try {
+                Integer id = Integer.parseInt(idStr);
+                UserDto userToUpdate = mapper.readValue(req.getInputStream(), UserDto.class);
+                userToUpdate.setId(id);
+
+                userService.update(userToUpdate);
+
+                if (userToUpdate.getId() != -1) {
+                    resp.setStatus(HttpServletResponse.SC_OK);
+                } else {
+                    resp.sendError(HttpServletResponse.SC_NOT_FOUND);
+                }
+            } catch (NumberFormatException e) {
+                resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
+            }
+        }
+    }
+
 }
