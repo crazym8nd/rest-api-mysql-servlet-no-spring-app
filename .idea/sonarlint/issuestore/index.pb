@@ -68,8 +68,6 @@ e
 5src/main/resources/db/migration/V1__generate_data.sql,9\9\998743f77731c27122e6dec884f06eef542a64af
 a
 1src/main/resources/db/migration/V0__create_db.sql,a\5\a5c2661709077026ef3ac6b659f81e7a0709ac95
-W
-'src/main/resources/hibernate.properties,a\c\ac770fe9478d530a77fce01d5082e3ea043e98d7
 q
 Asrc/main/java/com/vitaly/rest_api_no_spring_app/dto/EventDto.java,0\5\0553f803560b0130eca95e36da1a7170c07141d9
 p

@@ -10,7 +10,6 @@ import com.vitaly.rest_api_no_spring_app.repository.impl.UserRepositoryImpl;
 import com.vitaly.rest_api_no_spring_app.service.UserService;
 import com.vitaly.rest_api_no_spring_app.util.HibernateUtil;
 import com.vitaly.rest_api_no_spring_app.util.mappers.UserMapper;
-import org.hibernate.Hibernate;
 import org.hibernate.Session;
 
 import java.util.ArrayList;
@@ -34,7 +33,7 @@ public class UserServiceImpl implements UserService {
             users = userRepository.getAll();
             List<UserDto> userDtoList = new ArrayList<>();
             for (User user : users) {
-                UserDto userDto = UserMapper.convertEntityToDto(user);
+                UserDto userDto = UserMapper.convertEntityToDtoWithoutEvents(user);
                 userDtoList.add(userDto);
             }
             return userDtoList;
@@ -44,7 +43,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto getById(Integer integer) {
         User user = userRepository.getById(integer);
-        return UserMapper.convertEntityToDto(user);
+        return UserMapper.convertEntityToDtoWithoutEvents(user);
     }
 
     @Override

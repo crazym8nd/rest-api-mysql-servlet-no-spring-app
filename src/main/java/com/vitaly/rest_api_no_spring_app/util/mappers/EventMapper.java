@@ -4,7 +4,6 @@ package com.vitaly.rest_api_no_spring_app.util.mappers;
 
 
 import com.vitaly.rest_api_no_spring_app.dto.EventDto;
-import com.vitaly.rest_api_no_spring_app.dto.UserDto;
 import com.vitaly.rest_api_no_spring_app.model.Event;
 import com.vitaly.rest_api_no_spring_app.model.File;
 import com.vitaly.rest_api_no_spring_app.model.User;
@@ -12,13 +11,12 @@ import com.vitaly.rest_api_no_spring_app.repository.FileRepository;
 import com.vitaly.rest_api_no_spring_app.repository.UserRepository;
 import com.vitaly.rest_api_no_spring_app.repository.impl.FileRepositoryImpl;
 import com.vitaly.rest_api_no_spring_app.repository.impl.UserRepositoryImpl;
-import org.hibernate.Hibernate;
 
 public class EventMapper {
     public static EventDto convertEntityToDto(Event event) {
         EventDto eventDto= new EventDto();
         eventDto.setId(event.getId());
-        eventDto.setUser(UserMapper.convertEntityToDto(event.getUser()));
+        eventDto.setUser(UserMapper.convertEntityToDtoWithoutEvents(event.getUser()));
         eventDto.setFile(FileMapper.convertEntityToDto(event.getFile()));
         eventDto.setStatus(event.getStatus());
 

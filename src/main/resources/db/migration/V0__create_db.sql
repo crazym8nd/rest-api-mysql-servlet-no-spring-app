@@ -1,11 +1,11 @@
-CREATE TABLE IF NOT EXISTS rest_api_mysql.users
+CREATE TABLE IF NOT EXISTS users
 (
     id        INTEGER      NOT NULL AUTO_INCREMENT PRIMARY KEY,
     user_name VARCHAR(100) NOT NULL,
     user_status VARCHAR(100) NOT NULL
     );
 
-CREATE TABLE IF NOT EXISTS rest_api_mysql.files
+CREATE TABLE IF NOT EXISTS files
 (
     id        INTEGER      NOT NULL AUTO_INCREMENT PRIMARY KEY,
     file_name VARCHAR(100) NOT NULL,
@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS rest_api_mysql.files
     file_status VARCHAR(100) NOT NULL
     );
 
-CREATE TABLE IF NOT EXISTS rest_api_mysql.events
+CREATE TABLE IF NOT EXISTS events
 (
     id      INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
     user_id INTEGER NOT NULL,

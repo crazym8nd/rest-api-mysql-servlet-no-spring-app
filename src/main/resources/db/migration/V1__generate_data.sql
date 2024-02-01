@@ -1,4 +1,3 @@
-USE rest_api_mysql;
 INSERT INTO users(user_name,user_status) VALUES
                                              ('testuser1','ACTIVE'),
                                              ('testuser2','ACTIVE'),

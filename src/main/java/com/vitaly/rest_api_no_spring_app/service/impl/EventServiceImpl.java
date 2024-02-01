@@ -32,7 +32,6 @@ public class EventServiceImpl implements EventService {
         List<EventDto> eventDtoList = new ArrayList<>();
             List<Event> events = eventRepository.getAll();
             for (Event event : events) {
-                Hibernate.initialize(event.getUser());
                 EventDto eventDto = EventMapper.convertEntityToDto(event);
                 eventDtoList.add(eventDto);
             }

@@ -12,24 +12,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class UserMapper {
-    public static UserDto convertEntityToDto(User user) {
+    public static UserDto convertEntityToDtoWithoutEvents(User user) {
         UserDto userDto = new UserDto();
         userDto.setId(user.getId());
         userDto.setName(user.getName());
-
-        if(user.getEvents() != null){
-            List<EventDto> eventDtos = user.getEvents().stream()
-                    .map(event -> {
-                        EventDto eventDto = new EventDto();
-                        eventDto.setId(event.getId());
-                        eventDto.setFile(FileMapper.convertEntityToDto(event.getFile()));
-                        eventDto.setStatus(event.getStatus());
-                        return eventDto;
-                    }).collect(Collectors.toList());
-            userDto.setEvents(eventDtos);
-        }
-
-
         userDto.setStatus(user.getStatus());
 
         return userDto;

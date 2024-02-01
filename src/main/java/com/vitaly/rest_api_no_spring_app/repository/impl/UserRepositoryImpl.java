@@ -21,7 +21,7 @@ public class UserRepositoryImpl implements UserRepository {
         List<User> usersToShow;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 
-            usersToShow = session.createQuery("SELECT u FROM User u LEFT JOIN FETCH u.events WHERE u.status =:status", User.class)
+            usersToShow = session.createQuery("FROM User u LEFT JOIN FETCH u.events WHERE u.status =:status", User.class)
                     .setParameter("status", Status.ACTIVE)
                     .getResultList();
         } catch (HibernateException e) {
@@ -34,7 +34,7 @@ public class UserRepositoryImpl implements UserRepository {
     public User getById(Integer id) {
         User user = new User();
         try(Session session = HibernateUtil.getSessionFactory().openSession()){
-            user =  session.createQuery("SELECT u FROM User u LEFT  JOIN FETCH u.events WHERE u.id = :id", User.class)
+            user =  session.createQuery("FROM User u LEFT  JOIN FETCH u.events WHERE u.id = :id", User.class)
                     .setParameter("id", id)
                     .uniqueResult();
         } catch (HibernateException e){
