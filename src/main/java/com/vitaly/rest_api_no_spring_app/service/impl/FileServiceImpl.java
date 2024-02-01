@@ -50,15 +50,22 @@ public class FileServiceImpl implements FileService {
 
     @Override
     public FileDto update(FileDto fileDto) {
-        File file = FileMapper.convertDtoToEntity(fileDto);
-        fileRepository.update(file);
+        File file = fileRepository.getById(fileDto.getId());
+        if (file == null) {
+            fileDto.setName("File not found");
+            fileDto.setId(-1);
+            return fileDto;
+        }
 
+        file.setName(fileDto.getName());
+        file.setFilePath(fileDto.getFilePath());
+        file.setStatus(fileDto.getStatus());
+        fileRepository.update(file);
         return fileDto;
     }
 
     @Override
     public void deleteById(Integer integer) {
         fileRepository.deleteById(integer);
-
     }
 }

@@ -84,3 +84,5 @@ z
 Jsrc/main/java/com/vitaly/rest_api_no_spring_app/util/FileTransferUtil.java,1\4\140054934756d85a7403df3435cdde9bb8507e7c
 R
 "src/main/webapp/upload_single.html,5\9\594e927c2bde8180f631590c585a944641cde9f1
+H
+restapicrudnospring.yaml,3\4\3442c0dd18562c638c1a9f888665acb0bc0f650c
