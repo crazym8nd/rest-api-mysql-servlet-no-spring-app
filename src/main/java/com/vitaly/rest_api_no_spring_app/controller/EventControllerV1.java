@@ -21,10 +21,6 @@ public class EventControllerV1 extends HttpServlet {
         final EventService eventService = new EventServiceImpl();
     final ObjectMapper mapper = new ObjectMapper();
 
-
-
-
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         List<EventDto> eventList = eventService.getAll();

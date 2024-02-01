@@ -1,16 +1,15 @@
-<%@ page import="com.google.gson.Gson" %>
-<%@ page import="com.vitaly.rest_api_no_spring_app.model.Event" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="com.vitaly.rest_api_no_spring_app.model.User" %>
-<%@ page import="com.vitaly.rest_api_no_spring_app.model.Status" %>
-<%@ page import="com.vitaly.rest_api_no_spring_app.model.File" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>HEHE TITLE</title>
+    <title>File upload Example</title>
     <meta content="text/html; charset=utf-8" />
 </head>
 <body>
-<h2>Hello World!</h2>
+    <div align ="center">
+        <div><h1>File Upload</h1></div>
+        <div>
+            <a href="upload_single.html">Upload a single file</a>
+        </div>
+    </div>
 </body>
 </html>

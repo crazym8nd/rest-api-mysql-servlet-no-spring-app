@@ -28,13 +28,8 @@ public class UserControllerV1 extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
         List<UserDto> userList = userService.getAll();
-
-
         String json = mapper.writeValueAsString(userList);
-
         resp.setContentType("application/json");
-
         resp.getWriter().write(json);
-
     }
 }
