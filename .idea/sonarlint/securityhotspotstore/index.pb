@@ -88,3 +88,5 @@ H
 restapicrudnospring.yaml,3\4\3442c0dd18562c638c1a9f888665acb0bc0f650c
 …
 Usrc/test/java/com/vitaly/rest_api_no_spring_app/service/impl/UserServiceImplTest.java,a\4\a483999896a55654a490bc981ba5e9bc14fddee6
+…
+Usrc/test/java/com/vitaly/rest_api_no_spring_app/service/impl/FileServiceImplTest.java,3\6\36e7fd89c768227452d7076a5cf9fe12bd552f5a
