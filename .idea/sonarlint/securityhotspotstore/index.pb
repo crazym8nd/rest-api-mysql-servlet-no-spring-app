@@ -86,3 +86,5 @@ R
 "src/main/webapp/upload_single.html,5\9\594e927c2bde8180f631590c585a944641cde9f1
 H
 restapicrudnospring.yaml,3\4\3442c0dd18562c638c1a9f888665acb0bc0f650c
+…
+Usrc/test/java/com/vitaly/rest_api_no_spring_app/service/impl/UserServiceImplTest.java,a\4\a483999896a55654a490bc981ba5e9bc14fddee6

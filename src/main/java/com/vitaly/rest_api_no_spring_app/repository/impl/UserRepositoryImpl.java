@@ -3,6 +3,7 @@ package com.vitaly.rest_api_no_spring_app.repository.impl;
 // gh crazym8nd
 
 
+import com.google.protobuf.Empty;
 import com.vitaly.rest_api_no_spring_app.model.Status;
 import com.vitaly.rest_api_no_spring_app.model.User;
 import com.vitaly.rest_api_no_spring_app.repository.UserRepository;
@@ -40,7 +41,13 @@ public class UserRepositoryImpl implements UserRepository {
         } catch (HibernateException e){
             System.out.println("Error while getting user by id ");
         }
-        return user;
+        if(user != null){
+            return user;
+        } else {
+            user = new User(-1, "NO SUCH USER", null);
+            return user;
+        }
+
     }
 
     @Override
@@ -68,9 +75,11 @@ public class UserRepositoryImpl implements UserRepository {
 
             } catch (HibernateException e){
                 System.out.println("Error while creating user ");
+                user = new User(-1, "NO SUCH USER", null);
+                return user;
             }
         }
-        return new User(-1,"NO SUCH USER", null);
+        return user;
     }
 
     @Override
