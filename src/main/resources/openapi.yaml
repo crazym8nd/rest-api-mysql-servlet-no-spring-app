@@ -91,7 +91,7 @@ paths:
             example: 1
       responses:
         'default':
-          description: Cant create new user
+          description: Cant delete user
           content:
             application/json:
               schema:
@@ -214,7 +214,7 @@ paths:
             example: 1
       responses:
         'default':
-          description: Cant create new event
+          description: Cant get event by id
           content:
             application/json:
               schema:
@@ -338,7 +338,7 @@ paths:
             example: 1
       responses:
         'default':
-          description: Cant create new file
+          description: Cant get file by id
           content:
             application/json:
               schema:
@@ -381,9 +381,6 @@ components:
   schemas:
     User:
       type: object
-      required:
-        - id
-        - name
       properties:
         id:
           type: string
@@ -413,8 +410,6 @@ components:
           type: string
     Event:
       type: object
-      required:
-        - id
       properties:
         id:
           type: string
@@ -437,8 +432,6 @@ components:
         $ref: '#/components/schemas/Event'
     File:
       type: object
-      required:
-        - id
       properties:
         id:
           type: string
