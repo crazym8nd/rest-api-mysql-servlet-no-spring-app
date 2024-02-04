@@ -131,13 +131,13 @@ class UserServiceImplTest {
     void updateNegative() {
         UserDto nonExistentUser = new UserDto();
         when(userRepMock.update(UserMapper.convertDtoToEntity(nonExistentUser))).thenReturn(null);
-        assertNull(userRepMock.create(UserMapper.convertDtoToEntity(nonExistentUser)));
+        assertNull(userRepMock.update(UserMapper.convertDtoToEntity(nonExistentUser)));
     }
 
     @Test
     void deleteByIdNegative() {
         userService.deleteById(999);
-        verify(userRepMock,times(1)).deleteById(999);
+        verify(userRepMock).deleteById(999);
     }
 
 }

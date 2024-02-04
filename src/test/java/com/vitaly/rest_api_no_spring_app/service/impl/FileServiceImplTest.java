@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static java.util.Collections.emptyList;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 //  03-Feb-24
@@ -87,24 +88,43 @@ class FileServiceImplTest {
     //negative tests
     @Test
     void getAllNegative() {
+        when(fileRepMock.getAll()).thenReturn(emptyList());
+        List<FileDto> result = fileService.getAll();
+        assertTrue(result.isEmpty());
 
 
     }
 
     @Test
     void getByIdNegative() {
+        int nonExistingId = 999;
+        when(fileRepMock.getById(nonExistingId)).thenReturn(new File(-1, "NO SUCH FILE", null, Status.ACTIVE));
+        FileDto result = fileService.getById(nonExistingId);
+        assertNotNull(result);
+        assertEquals(-1, result.getId());
+        assertEquals("NO SUCH FILE", result.getName());
+        assertEquals(Status.ACTIVE, result.getStatus());
     }
 
     @Test
     void createNegative() {
+        FileDto fileDtoToSave = new FileDto();
+        assertNull(fileRepMock.create(FileMapper.convertDtoToEntity(fileDtoToSave)));
     }
 
     @Test
     void updateNegative() {
+
+        FileDto nonExistentFile = new FileDto();
+        when(fileRepMock.update(FileMapper.convertDtoToEntity(nonExistentFile))).thenReturn(null);
+        assertNull(fileRepMock.update(FileMapper.convertDtoToEntity(nonExistentFile)));
     }
 
     @Test
     void deleteByIdNegative() {
+
+        fileService.deleteById(999);
+        verify(fileRepMock).deleteById(999);
     }
 
 }

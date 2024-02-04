@@ -15,27 +15,42 @@ import com.vitaly.rest_api_no_spring_app.repository.impl.UserRepositoryImpl;
 public class EventMapper {
     public static EventDto convertEntityToDto(Event event) {
         EventDto eventDto= new EventDto();
-        eventDto.setId(event.getId());
-        eventDto.setUser(UserMapper.convertEntityToDtoWithoutEvents(event.getUser()));
-        eventDto.setFile(FileMapper.convertEntityToDto(event.getFile()));
-        eventDto.setStatus(event.getStatus());
-
+        if (event!= null) {
+            eventDto.setId(event.getId());
+            eventDto.setUser(UserMapper.convertEntityToDtoWithoutEvents(event.getUser()));
+            eventDto.setFile(null);
+            eventDto.setStatus(event.getStatus());
+        } else {
+            eventDto.setId(null);
+            eventDto.setUser(null);
+            eventDto.setFile(null);
+            eventDto.setStatus(null);
+        }
         return eventDto;
     }
 
     public static Event convertDtoToEntity(EventDto eventDto) {
-
         UserRepository userRepository = new UserRepositoryImpl();
-        Event event = new Event();
-        event.setId(eventDto.getId());
-
-        User user = userRepository.getById(eventDto.getUser().getId());
-        event.setUser(user);
-
         FileRepository fileRepository = new FileRepositoryImpl();
-        File file = fileRepository.getById(eventDto.getFile().getId());
-        event.setFile(file);
-        event.setStatus(eventDto.getStatus());
+
+        Event event = new Event();
+
+        if (eventDto != null) {
+            event.setId(eventDto.getId());
+
+            User user = userRepository.getById(eventDto.getUser().getId());
+            event.setUser(user);
+
+            File file = fileRepository.getById(eventDto.getFile().getId());
+            event.setFile(file);
+
+            event.setStatus(eventDto.getStatus());
+        }else {
+            event.setId(null);
+            event.setUser(null);
+            event.setFile(null);
+            event.setStatus(null);
+        }
 
         return event;
     }

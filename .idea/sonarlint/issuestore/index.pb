@@ -90,3 +90,7 @@ H
 Usrc/test/java/com/vitaly/rest_api_no_spring_app/service/impl/UserServiceImplTest.java,a\4\a483999896a55654a490bc981ba5e9bc14fddee6
 …
 Usrc/test/java/com/vitaly/rest_api_no_spring_app/service/impl/FileServiceImplTest.java,3\6\36e7fd89c768227452d7076a5cf9fe12bd552f5a
+Œ
+\src/test/java/com/vitaly/rest_api_no_spring_app/repository/impl/EventRepositoryImplTest.java,5\a\5a0db5791d4d36d80a7c5166c0936214bd9f3b34
+†
+Vsrc/test/java/com/vitaly/rest_api_no_spring_app/service/impl/EventServiceImplTest.java,e\c\ece325908198d521d86a5d72fcf011d0a6559ade
