@@ -8,11 +8,7 @@ import com.vitaly.rest_api_no_spring_app.model.Event;
 import com.vitaly.rest_api_no_spring_app.repository.EventRepository;
 import com.vitaly.rest_api_no_spring_app.repository.impl.EventRepositoryImpl;
 import com.vitaly.rest_api_no_spring_app.service.EventService;
-import com.vitaly.rest_api_no_spring_app.util.HibernateUtil;
 import com.vitaly.rest_api_no_spring_app.util.mappers.EventMapper;
-import jakarta.transaction.Transactional;
-import org.hibernate.Hibernate;
-import org.hibernate.Session;
 
 import java.util.ArrayList;
 import java.util.List;

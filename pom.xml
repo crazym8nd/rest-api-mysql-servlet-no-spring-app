@@ -20,6 +20,7 @@
     <hibernate.version>6.4.1.Final</hibernate.version>
     <mockito.version>4.10.0</mockito.version>
     <jackson.version>2.15.1</jackson.version>
+    <flyway.version>9.19.4</flyway.version>
   </properties>
 
   <dependencies>
@@ -66,7 +67,7 @@
     <dependency>
       <groupId>org.flywaydb</groupId>
       <artifactId>flyway-mysql</artifactId>
-      <version>9.19.4</version>
+      <version>${flyway.version}</version>
     </dependency>
 
     <dependency>
@@ -86,42 +87,7 @@
       <artifactId>jackson-databind</artifactId>
       <version>${jackson.version}</version>
     </dependency>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter</artifactId>
-      <version>RELEASE</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter</artifactId>
-      <version>RELEASE</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter</artifactId>
-      <version>RELEASE</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter</artifactId>
-      <version>RELEASE</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter</artifactId>
-      <version>RELEASE</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter</artifactId>
-      <version>RELEASE</version>
-      <scope>test</scope>
-    </dependency>
+
   </dependencies>
 
   <build>

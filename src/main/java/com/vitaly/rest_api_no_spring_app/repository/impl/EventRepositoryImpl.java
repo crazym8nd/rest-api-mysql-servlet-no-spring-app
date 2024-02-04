@@ -7,8 +7,6 @@ import com.vitaly.rest_api_no_spring_app.model.Event;
 import com.vitaly.rest_api_no_spring_app.model.Status;
 import com.vitaly.rest_api_no_spring_app.repository.EventRepository;
 import com.vitaly.rest_api_no_spring_app.util.HibernateUtil;
-import jakarta.transaction.Transactional;
-import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 

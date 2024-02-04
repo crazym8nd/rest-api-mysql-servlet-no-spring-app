@@ -3,10 +3,7 @@ package com.vitaly.rest_api_no_spring_app.dto;
 // gh crazym8nd
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.vitaly.rest_api_no_spring_app.model.Event;
 import com.vitaly.rest_api_no_spring_app.model.Status;
 import lombok.Getter;
 import lombok.Setter;

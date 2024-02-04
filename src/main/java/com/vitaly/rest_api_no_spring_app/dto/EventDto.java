@@ -3,9 +3,7 @@ package com.vitaly.rest_api_no_spring_app.dto;
 // gh crazym8nd
 
 
-import com.vitaly.rest_api_no_spring_app.model.File;
 import com.vitaly.rest_api_no_spring_app.model.Status;
-import com.vitaly.rest_api_no_spring_app.model.User;
 import lombok.Getter;
 import lombok.Setter;
 

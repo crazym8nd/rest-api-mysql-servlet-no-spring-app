@@ -25,8 +25,8 @@ class EventServiceImplTest {
 
     File mockFile = new File(1,"fakename1", "fakepath1", Status.ACTIVE);
     User mockUser = new User(1, "username1", null, Status.ACTIVE);
-    private Event mockEvent = new Event(1, mockUser, mockFile, Status.ACTIVE);
-    private List<Event> mockEventsList = List.of(mockEvent);
+    private final Event mockEvent = new Event(1, mockUser, mockFile, Status.ACTIVE);
+    private final List<Event> mockEventsList = List.of(mockEvent);
 
 
 
@@ -116,11 +116,8 @@ class EventServiceImplTest {
     @Test
     void createNegative() {
         Event event = null;
-        EventDto result =eventService.create(EventMapper.convertEntityToDto(event));
-        assertNull(result.getId());
-        assertNull(result.getUser());
-        assertNull(result.getFile());
-        assertNull(result.getStatus());
+        EventDto result = eventService.create(EventMapper.convertEntityToDto(event));
+        assertNull(result);
     }
 
     @Test

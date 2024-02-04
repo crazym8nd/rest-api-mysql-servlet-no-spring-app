@@ -5,21 +5,15 @@ package com.vitaly.rest_api_no_spring_app.service.impl;
 // gh crazym8nd
 
 import com.vitaly.rest_api_no_spring_app.dto.UserDto;
-import com.vitaly.rest_api_no_spring_app.model.Event;
-import com.vitaly.rest_api_no_spring_app.model.File;
 import com.vitaly.rest_api_no_spring_app.model.Status;
 import com.vitaly.rest_api_no_spring_app.model.User;
 import com.vitaly.rest_api_no_spring_app.repository.UserRepository;
 import com.vitaly.rest_api_no_spring_app.repository.impl.UserRepositoryImpl;
 import com.vitaly.rest_api_no_spring_app.service.UserService;
 import com.vitaly.rest_api_no_spring_app.util.mappers.UserMapper;
-import org.hibernate.HibernateException;
 import org.junit.jupiter.api.Test;
 
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 import static java.util.Collections.emptyList;
 import static org.junit.jupiter.api.Assertions.*;
@@ -32,26 +26,25 @@ class UserServiceImplTest {
     private final User mockUser = new User(1, "Vitaly", null, Status.ACTIVE);
     private final User mockUser2 = new User(2, "George", null, Status.ACTIVE);
 
-    private final List<User> mockUsersList = List.of(mockUser);
+    private final List<User> mockUsersList = List.of(mockUser,mockUser2);
 
-//positive tests
+    //positive tests
     @Test
     void getAllSuccess() {
         when(userRepMock.getAll()).thenReturn(mockUsersList);
-
         List<UserDto> result = userService.getAll();
 
         assertNotNull(result);
         assertEquals(mockUsersList.size(), result.size());
 
-        for (int i = 0; i < mockUsersList.size(); i++) {
+        for(int i=0;i<mockUsersList.size();i++){
             User user = mockUsersList.get(i);
             UserDto userDto = result.get(i);
-
             assertEquals(user.getId(), userDto.getId());
             assertEquals(user.getName(), userDto.getName());
             assertEquals(user.getStatus(), userDto.getStatus());
         }
+
     }
 
 @Test
@@ -123,15 +116,15 @@ class UserServiceImplTest {
     void createNegative() {
         UserDto userDtoToSave = new UserDto();
 
-        assertNull(userRepMock.create(UserMapper.convertDtoToEntity(userDtoToSave)));
+        assertNull(userRepMock.create(UserMapper.convertDtoToEntityWithoutEvents(userDtoToSave)));
 
     }
 
     @Test
     void updateNegative() {
         UserDto nonExistentUser = new UserDto();
-        when(userRepMock.update(UserMapper.convertDtoToEntity(nonExistentUser))).thenReturn(null);
-        assertNull(userRepMock.update(UserMapper.convertDtoToEntity(nonExistentUser)));
+        when(userRepMock.update(UserMapper.convertDtoToEntityWithoutEvents(nonExistentUser))).thenReturn(null);
+        assertNull(userRepMock.update(UserMapper.convertDtoToEntityWithoutEvents(nonExistentUser)));
     }
 
     @Test

@@ -58,10 +58,6 @@ public class FileControllerV1 extends HttpServlet {
                         resp.setStatus(HttpServletResponse.SC_OK);
 
 
-
-//                        resp.setContentType("application/json");
-//                        resp.getWriter().write(mapper.writeValueAsString(file));
-//                        resp.setStatus(HttpServletResponse.SC_OK);
                     } else {
                         resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
                     }

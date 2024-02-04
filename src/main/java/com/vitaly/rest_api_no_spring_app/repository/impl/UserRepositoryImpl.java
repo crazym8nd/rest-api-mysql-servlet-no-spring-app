@@ -3,16 +3,13 @@ package com.vitaly.rest_api_no_spring_app.repository.impl;
 // gh crazym8nd
 
 
-import com.google.protobuf.Empty;
 import com.vitaly.rest_api_no_spring_app.model.Status;
 import com.vitaly.rest_api_no_spring_app.model.User;
 import com.vitaly.rest_api_no_spring_app.repository.UserRepository;
 import com.vitaly.rest_api_no_spring_app.util.HibernateUtil;
-import jakarta.transaction.Transactional;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 

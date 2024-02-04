@@ -8,7 +8,6 @@ import com.vitaly.rest_api_no_spring_app.model.File;
 import com.vitaly.rest_api_no_spring_app.repository.FileRepository;
 import com.vitaly.rest_api_no_spring_app.repository.impl.FileRepositoryImpl;
 import com.vitaly.rest_api_no_spring_app.service.FileService;
-import com.vitaly.rest_api_no_spring_app.util.mappers.EventMapper;
 import com.vitaly.rest_api_no_spring_app.util.mappers.FileMapper;
 
 import java.util.ArrayList;

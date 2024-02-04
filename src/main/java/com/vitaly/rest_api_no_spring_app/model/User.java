@@ -3,7 +3,6 @@ package com.vitaly.rest_api_no_spring_app.model;
 // gh crazym8nd
 
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

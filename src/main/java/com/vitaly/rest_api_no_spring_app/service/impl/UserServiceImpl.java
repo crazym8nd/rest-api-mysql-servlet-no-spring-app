@@ -8,9 +8,7 @@ import com.vitaly.rest_api_no_spring_app.model.User;
 import com.vitaly.rest_api_no_spring_app.repository.UserRepository;
 import com.vitaly.rest_api_no_spring_app.repository.impl.UserRepositoryImpl;
 import com.vitaly.rest_api_no_spring_app.service.UserService;
-import com.vitaly.rest_api_no_spring_app.util.HibernateUtil;
 import com.vitaly.rest_api_no_spring_app.util.mappers.UserMapper;
-import org.hibernate.Session;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,16 +26,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserDto> getAll() {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            List<User> users;
-            users = userRepository.getAll();
+            List<User> users = userRepository.getAll();
             List<UserDto> userDtoList = new ArrayList<>();
             for (User user : users) {
                 UserDto userDto = UserMapper.convertEntityToDtoWithoutEvents(user);
                 userDtoList.add(userDto);
             }
             return userDtoList;
-        }
+
     }
 
     @Override
@@ -48,14 +44,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto create(UserDto userDto) {
-        User user = UserMapper.convertDtoToEntity(userDto);
+        User user = UserMapper.convertDtoToEntityWithoutEvents(userDto);
         userRepository.create(user);
         return userDto;
     }
 
     @Override
     public UserDto update(UserDto userDto) {
-        User user = UserMapper.convertDtoToEntity(userDto);
+        User user = UserMapper.convertDtoToEntityWithoutEvents(userDto);
         userRepository.update(user);
         return userDto;
     }

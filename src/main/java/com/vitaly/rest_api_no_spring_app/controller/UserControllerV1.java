@@ -3,13 +3,9 @@ package com.vitaly.rest_api_no_spring_app.controller;
 // gh crazym8nd
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.vitaly.rest_api_no_spring_app.dto.UserDto;
 import com.vitaly.rest_api_no_spring_app.service.UserService;
 import com.vitaly.rest_api_no_spring_app.service.impl.UserServiceImpl;
-import com.vitaly.rest_api_no_spring_app.util.HibernateUtil;
-import org.hibernate.Session;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

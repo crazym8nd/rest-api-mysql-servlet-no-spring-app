@@ -4,7 +4,6 @@ package com.vitaly.rest_api_no_spring_app.service;
 
 
 import com.vitaly.rest_api_no_spring_app.dto.FileDto;
-import com.vitaly.rest_api_no_spring_app.model.File;
 
 public interface FileService extends GenericService<FileDto, Integer> {
 }

@@ -5,8 +5,6 @@ package com.vitaly.rest_api_no_spring_app.repository;
 
 import com.vitaly.rest_api_no_spring_app.model.User;
 
-import java.util.List;
-
 public interface UserRepository extends GenericRepository<User, Integer> {
 
 }

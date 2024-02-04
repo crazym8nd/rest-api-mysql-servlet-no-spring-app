@@ -21,10 +21,10 @@ class FileServiceImplTest {
     private final FileRepository fileRepMock = mock(FileRepositoryImpl.class);
     private final FileService fileService = new FileServiceImpl(fileRepMock);
 
-    private File mockFile = new File(1,"fakename1", "fakepath1", Status.ACTIVE);
-    private File mockFile2 = new File(2,"fakename2", "fakepath2", Status.ACTIVE);
+    private final File mockFile = new File(1,"fakename1", "fakepath1", Status.ACTIVE);
+    private final File mockFile2 = new File(2,"fakename2", "fakepath2", Status.ACTIVE);
 
-    private List<File> mockFilesList = List.of(mockFile, mockFile2);
+    private final List<File> mockFilesList = List.of(mockFile, mockFile2);
 
     //positive tests
     @Test

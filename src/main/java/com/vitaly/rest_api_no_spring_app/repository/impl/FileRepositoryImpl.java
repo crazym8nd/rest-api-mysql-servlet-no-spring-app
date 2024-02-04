@@ -10,7 +10,6 @@ import com.vitaly.rest_api_no_spring_app.util.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 

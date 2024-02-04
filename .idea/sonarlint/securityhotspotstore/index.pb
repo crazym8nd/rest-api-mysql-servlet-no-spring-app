@@ -94,3 +94,13 @@ Usrc/test/java/com/vitaly/rest_api_no_spring_app/service/impl/FileServiceImplTes
 \src/test/java/com/vitaly/rest_api_no_spring_app/repository/impl/EventRepositoryImplTest.java,5\a\5a0db5791d4d36d80a7c5166c0936214bd9f3b34
 †
 Vsrc/test/java/com/vitaly/rest_api_no_spring_app/service/impl/EventServiceImplTest.java,e\c\ece325908198d521d86a5d72fcf011d0a6559ade
+y
+Isrc/main/java/com/vitaly/rest_api_no_spring_app/controller/SwaggerUi.java,b\9\b9c153b0d0c68cb620987148228ef956146a676e
+‚
+Rsrc/main/java/com/vitaly/rest_api_no_spring_app/controller/OpenApiSpecServlet.java,5\b\5bd12ab91e66cf6e08b70c68c9df4443f394b10d
+}
+Msrc/main/java/com/vitaly/rest_api_no_spring_app/controller/SwaggerConfig.java,f\6\f6a18a3e4369cec2b5e15b7289226c47521dca7c
+O
+src/main/resources/openapi.yaml,e\a\ea0d1d7c98c73a377ff38869e78da2f01e696781
+T
+$src/main/resources/hibernate.cfg.xml,3\1\3176feae82bf4ff4f68f72c9d6d3b850a3110c22
