@@ -384,7 +384,6 @@ components:
       properties:
         id:
           type: string
-          example: 1
         name:
           type: string
           example: username1

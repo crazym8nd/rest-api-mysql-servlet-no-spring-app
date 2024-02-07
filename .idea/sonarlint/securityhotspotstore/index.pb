@@ -5,8 +5,6 @@
 src/main/java,1\2\126f59157cfeffae640ab383208650e13aa61ba1
 O
 src/main/webapp/WEB-INF/web.xml,2\e\2e22b6edd746fa3dc40ad7276c87c8d87d72a392
-I
-src/main/webapp/index.jsp,8\e\8e6d3b70c9f5b02570779b0441540d45eceb0ded
 p
 @src/main/java/com/vitaly/rest_api_no_spring_app/model/Event.java,0\e\0eee606f94c7366c7bea5b113d168dbc2e1f5822
 o
@@ -80,26 +78,12 @@ Msrc/main/java/com/vitaly/rest_api_no_spring_app/util/mappers/EventMapper.java,
 Lsrc/main/java/com/vitaly/rest_api_no_spring_app/util/mappers/FileMapper.java,0\4\04d2d9a679e3f9d04487b92eba297edd253641ee
 |
 Lsrc/main/java/com/vitaly/rest_api_no_spring_app/util/mappers/UserMapper.java,e\a\ea0f39e1fa29aa3477f223bd75ff96804b17421e
-z
-Jsrc/main/java/com/vitaly/rest_api_no_spring_app/util/FileTransferUtil.java,1\4\140054934756d85a7403df3435cdde9bb8507e7c
-R
-"src/main/webapp/upload_single.html,5\9\594e927c2bde8180f631590c585a944641cde9f1
-H
-restapicrudnospring.yaml,3\4\3442c0dd18562c638c1a9f888665acb0bc0f650c
 …
 Usrc/test/java/com/vitaly/rest_api_no_spring_app/service/impl/UserServiceImplTest.java,a\4\a483999896a55654a490bc981ba5e9bc14fddee6
 …
 Usrc/test/java/com/vitaly/rest_api_no_spring_app/service/impl/FileServiceImplTest.java,3\6\36e7fd89c768227452d7076a5cf9fe12bd552f5a
-Œ
-\src/test/java/com/vitaly/rest_api_no_spring_app/repository/impl/EventRepositoryImplTest.java,5\a\5a0db5791d4d36d80a7c5166c0936214bd9f3b34
 †
 Vsrc/test/java/com/vitaly/rest_api_no_spring_app/service/impl/EventServiceImplTest.java,e\c\ece325908198d521d86a5d72fcf011d0a6559ade
-y
-Isrc/main/java/com/vitaly/rest_api_no_spring_app/controller/SwaggerUi.java,b\9\b9c153b0d0c68cb620987148228ef956146a676e
-‚
-Rsrc/main/java/com/vitaly/rest_api_no_spring_app/controller/OpenApiSpecServlet.java,5\b\5bd12ab91e66cf6e08b70c68c9df4443f394b10d
-}
-Msrc/main/java/com/vitaly/rest_api_no_spring_app/controller/SwaggerConfig.java,f\6\f6a18a3e4369cec2b5e15b7289226c47521dca7c
 O
 src/main/resources/openapi.yaml,e\a\ea0d1d7c98c73a377ff38869e78da2f01e696781
 T

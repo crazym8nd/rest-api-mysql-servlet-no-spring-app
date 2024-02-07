@@ -52,9 +52,8 @@ public class FileControllerV1 extends HttpServlet {
 
                     if (file != null) {
 
-                        String filePathWithName = file.getFilePath();
-                        resp.setContentType("text/plain");
-                        resp.getWriter().write(filePathWithName);
+                        resp.setContentType("application/json");
+                        resp.getWriter().write(mapper.writeValueAsString(file));
                         resp.setStatus(HttpServletResponse.SC_OK);
 
 
