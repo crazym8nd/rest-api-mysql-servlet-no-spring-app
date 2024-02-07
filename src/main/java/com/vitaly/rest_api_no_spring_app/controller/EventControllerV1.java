@@ -45,11 +45,21 @@ public class EventControllerV1 extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        EventDto event = mapper.readValue(req.getReader(), EventDto.class);
-        eventService.create(event);
-        resp.setContentType("application/json");
-        resp.setStatus(HttpServletResponse.SC_CREATED);
-        resp.getWriter().write(mapper.writeValueAsString(event));
+        try {
+            EventDto event = mapper.readValue(req.getReader(), EventDto.class);
+            EventDto createdEvent = eventService.create(event);
+
+            if (createdEvent.getId() != null) {
+                resp.setContentType("application/json");
+                resp.setStatus(HttpServletResponse.SC_CREATED);
+                resp.getWriter().write(mapper.writeValueAsString(event));
+            } else {
+                resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            }
+
+        } catch (Exception e) {
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        }
     }
 
     @Override
@@ -58,15 +68,26 @@ public class EventControllerV1 extends HttpServlet {
         if (pathInfo != null) {
             String[] splits = pathInfo.split("/");
             if (splits.length == 2) {
-                int eventId = Integer.parseInt(splits[1]);
-                EventDto eventToUpdate = mapper.readValue(req.getReader(), EventDto.class);
-                eventService.update(eventToUpdate);
-                resp.setStatus(HttpServletResponse.SC_OK);
-            } else {
-                resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
+                try {
+                    int eventId = Integer.parseInt(splits[1]);
+                    EventDto eventToUpdate = mapper.readValue(req.getReader(), EventDto.class);
+
+                    eventService.update(eventToUpdate);
+                    if (eventToUpdate.getId() != -1) {
+                        resp.setContentType("application/json");
+                        resp.setStatus(HttpServletResponse.SC_OK);
+                        resp.getWriter().write(mapper.writeValueAsString(eventToUpdate));
+
+                    } else {
+                        resp.sendError(HttpServletResponse.SC_NOT_FOUND);
+                    }
+                } catch (NumberFormatException e) {
+                    resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
+                }
             }
         }
     }
+
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -74,14 +95,24 @@ public class EventControllerV1 extends HttpServlet {
         if (pathInfo != null) {
             String[] splits = pathInfo.split("/");
             if (splits.length == 2) {
-                int eventId = Integer.parseInt(splits[1]);
-                eventService.deleteById(eventId);
-                resp.setStatus(HttpServletResponse.SC_NO_CONTENT);
-            } else {
-                resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
+                try {
+                    int eventId = Integer.parseInt(splits[1]);
+                    eventService.deleteById(eventId);
+
+                    if (eventService.getById(eventId).getId() == -1) {
+                        resp.getWriter().write("{\"error\":\"Event not found.\"}");
+                        resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
+                    } else {
+                        resp.getWriter().write("{\"message\":\"Event successfully deleted.\"}");
+                        resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
+                    }
+
+                } catch (NumberFormatException e) {
+                    resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
+                }
+
             }
         }
     }
-
 }
 

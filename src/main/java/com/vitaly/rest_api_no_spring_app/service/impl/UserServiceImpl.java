@@ -46,6 +46,7 @@ public class UserServiceImpl implements UserService {
     public UserDto create(UserDto userDto) {
         User user = UserMapper.convertDtoToEntityWithoutEvents(userDto);
         userRepository.create(user);
+        userDto.setId(user.getId());
         return userDto;
     }
 
@@ -53,6 +54,7 @@ public class UserServiceImpl implements UserService {
     public UserDto update(UserDto userDto) {
         User user = UserMapper.convertDtoToEntityWithoutEvents(userDto);
         userRepository.update(user);
+        userDto.setId(user.getId());
         return userDto;
     }
 

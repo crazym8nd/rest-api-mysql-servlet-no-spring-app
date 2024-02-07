@@ -45,7 +45,7 @@ public class EventServiceImpl implements EventService {
     public EventDto create(EventDto eventDto) {
             Event event = EventMapper.convertDtoToEntity(eventDto);
             eventRepository.create(event);
-
+            eventDto.setId(event.getId());
             return eventDto;
     }
 
@@ -53,6 +53,7 @@ public class EventServiceImpl implements EventService {
     public EventDto update(EventDto eventDto) {
         Event event = EventMapper.convertDtoToEntity(eventDto);
         eventRepository.update(event);
+        eventDto.setId(event.getId());
         return eventDto;
     }
 

@@ -73,86 +73,82 @@ public class FileControllerV1 extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        Part filePart = req.getPart("file");
-        String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+        try {
+            Part filePart = req.getPart("file");
+            String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+            Path fileSavePath = Paths.get("D:\\testFiles", fileName);
+            InputStream fileContent = filePart.getInputStream();
+            Files.copy(fileContent, fileSavePath, StandardCopyOption.REPLACE_EXISTING);
 
-        Path fileSavePath = Paths.get("D:\\testFiles", fileName);
+            FileDto fileDto = new FileDto();
+            fileDto.setName(fileName);
+            fileDto.setFilePath(fileSavePath.toString());
+            fileDto.setStatus(Status.ACTIVE);
+            fileService.create(fileDto);
 
-        InputStream fileContent = filePart.getInputStream();
-
-        Files.copy(fileContent,fileSavePath,StandardCopyOption.REPLACE_EXISTING);
-
-        FileDto fileDto = new FileDto();
-        fileDto.setName(fileName);
-        fileDto.setFilePath(fileSavePath.toString());
-        fileDto.setStatus(Status.ACTIVE);
-        fileService.create(fileDto);
-
-        resp.getWriter().write("File saved");
-        fileContent.close();
-        resp.setStatus(HttpServletResponse.SC_CREATED);
+            if(fileDto.getId() != null){
+                resp.setContentType("application/json");
+                resp.getWriter().write(mapper.writeValueAsString(fileDto));
+                resp.setStatus(HttpServletResponse.SC_CREATED);
+            } else {
+                resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            }
+            resp.setStatus(HttpServletResponse.SC_CREATED);
+            fileContent.close();
+        } catch (Exception e){
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        }
     }
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String pathInfo = req.getPathInfo();
-        if (pathInfo == null || !pathInfo.startsWith("/")) {
-            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            return;
-        }
+            String pathInfo = req.getPathInfo();
+            String[] splits = pathInfo.split("/");
+            resp.setContentType("application/json");
 
-        String[] pathParts = pathInfo.split("/");
-        if (pathParts.length != 2) {
-            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            return;
-        }
+            if (splits.length == 2) {
+                String idStr = splits[1];
+                try {
+                    Integer id = Integer.parseInt(idStr);
+                    FileDto fileToUpdate = mapper.readValue(req.getInputStream(), FileDto.class);
 
-        try {
-            FileDto fileToUpdate = mapper.readValue(req.getInputStream(), FileDto.class);
-            fileService.update(fileToUpdate);
+                    fileService.update(fileToUpdate);
 
-            if (fileToUpdate.getId() != -1) {
-                resp.setStatus(HttpServletResponse.SC_OK);
-            } else {
-                resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
+
+                    if (fileToUpdate.getId() != -1) {
+                        resp.setContentType("application/json");
+                        resp.setStatus(HttpServletResponse.SC_OK);
+                        resp.getWriter().write(mapper.writeValueAsString(fileToUpdate));
+                    } else {
+                        resp.sendError(HttpServletResponse.SC_NOT_FOUND);
+                    }
+                } catch (NumberFormatException e) {
+                    resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
+                }
             }
-        } catch (NumberFormatException e) {
-            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-        } catch (Exception e) {
-            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }
-    }
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String pathInfo = req.getPathInfo();
-        if (pathInfo == null || !pathInfo.startsWith("/")) {
-            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            return;
-        }
+        String[] splits = pathInfo.split("/");
+        resp.setContentType("application/json");
+        if (splits.length == 2) {
+            String idStr = splits[1];
+            try {
+                Integer id = Integer.parseInt(idStr);
+                fileService.deleteById(id);
 
-        String[] pathParts = pathInfo.split("/");
-        if (pathParts.length != 2) {
-            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            return;
-        }
-
-        try {
-            Integer id = Integer.parseInt(pathParts[1]);
-
-            fileService.deleteById(id);
-
-            if (id == -1) {
-                resp.setStatus(HttpServletResponse.SC_NO_CONTENT);
-            } else {
-                resp.getWriter().write("File with id= " + id + " successfully deleted");
-                resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
+                if (fileService.getById(id).getId() == -1) {
+                    resp.getWriter().write("{\"error\":\"File not found.\"}");
+                    resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
+                } else {
+                    resp.getWriter().write("{\"message\":\"File successfully deleted.\"}");
+                    resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
+                }
+            } catch (NumberFormatException e) {
+                resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
             }
-        } catch (NumberFormatException e) {
-            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-        } catch (Exception e) {
-            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }
     }
-
 }

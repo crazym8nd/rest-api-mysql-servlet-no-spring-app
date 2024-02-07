@@ -44,6 +44,7 @@ public class FileServiceImpl implements FileService {
     public FileDto create(FileDto fileDto) {
         File file = FileMapper.convertDtoToEntity(fileDto);
         fileRepository.create(file);
+        fileDto.setId(file.getId());
         return fileDto;
     }
 
@@ -51,6 +52,7 @@ public class FileServiceImpl implements FileService {
     public FileDto update(FileDto fileDto) {
         File file = fileRepository.getById(fileDto.getId());
         fileRepository.update(file);
+        fileDto.setId(file.getId());
         return fileDto;
     }
 

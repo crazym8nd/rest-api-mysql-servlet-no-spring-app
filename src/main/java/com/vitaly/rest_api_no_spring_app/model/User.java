@@ -27,7 +27,7 @@ public class User {
     @Column(name = "user_name")
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade=CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private List<Event> events;
 

@@ -21,11 +21,9 @@ public class UserMapper {
 
     public static User convertDtoToEntityWithoutEvents(UserDto userDto) {
         User user= new User();
-
         if (userDto != null) {
             user.setId(userDto.getId());
             user.setName(userDto.getName());
-
             user.setStatus(userDto.getStatus());
         } else {
             user = null;

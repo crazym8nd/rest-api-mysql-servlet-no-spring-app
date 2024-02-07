@@ -56,10 +56,11 @@ public class UserControllerV1 extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         try {
             UserDto userToCreate = mapper.readValue(req.getInputStream(), UserDto.class);
-            userService.create(userToCreate);
+            UserDto createdUser = userService.create(userToCreate);
 
-            if (userToCreate.getId() != null) {
-                resp.getWriter().write("User created with ID: " + userToCreate.getId());
+            if (createdUser.getId() != null) {
+                resp.setContentType("application/json");
+                resp.getWriter().write(mapper.writeValueAsString(createdUser));
                 resp.setStatus(HttpServletResponse.SC_CREATED);
             } else {
                 resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
@@ -73,19 +74,21 @@ public class UserControllerV1 extends HttpServlet {
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String pathInfo = req.getPathInfo();
         String[] splits = pathInfo.split("/");
+        resp.setContentType("application/json");
         if (splits.length == 2) {
             String idStr = splits[1];
             try {
                 Integer id = Integer.parseInt(idStr);
                 userService.deleteById(id);
 
-                if (id == -1) {
-                    resp.setStatus(HttpServletResponse.SC_NO_CONTENT);
+                if (userService.getById(id).getId() == -1) {
+                    resp.getWriter().write("{\"error\":\"User not found.\"}");
+                    resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
                 } else {
-                    resp.sendError(HttpServletResponse.SC_NOT_FOUND);
+                    resp.getWriter().write("{\"message\":\"User successfully deleted.\"}");
+                    resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
                 }
             } catch (NumberFormatException e) {
-                resp.getWriter().write("User successfully deleted");
                 resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
             }
         }
@@ -100,12 +103,13 @@ public class UserControllerV1 extends HttpServlet {
             try {
                 Integer id = Integer.parseInt(idStr);
                 UserDto userToUpdate = mapper.readValue(req.getInputStream(), UserDto.class);
-                userToUpdate.setId(id);
 
                 userService.update(userToUpdate);
 
                 if (userToUpdate.getId() != -1) {
+                    resp.setContentType("application/json");
                     resp.setStatus(HttpServletResponse.SC_OK);
+                    resp.getWriter().write(mapper.writeValueAsString(userToUpdate));
                 } else {
                     resp.sendError(HttpServletResponse.SC_NOT_FOUND);
                 }

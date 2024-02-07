@@ -71,7 +71,8 @@ public class UserRepositoryImpl implements UserRepository {
                 return user;
 
             } catch (HibernateException e){
-                System.out.println("Error while creating user ");
+                System.out.println("Error while updating user ");
+                e.printStackTrace();
                 user = new User(-1, "NO SUCH USER", null);
                 return user;
             }
